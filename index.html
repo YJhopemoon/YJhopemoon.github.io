@@ -1,153 +1,204 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YJ 的個人網站</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: "Noto Sans TC", sans-serif;
-      background-color: #f5f5f5;
-      color: #333;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YJ Netflix Style</title>
+<style>
+  body {
+    margin: 0;
+    font-family: "Noto Sans TC", sans-serif;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+  }
 
-    header {
-      text-align: center;
-      padding: 80px 20px;
-      background-color: #ffffff;
-      border-bottom: 1px solid #ddd;
-    }
+  h1 {
+    margin-top: 60px;
+    font-size: 2.5em;
+    font-weight: 700;
+  }
 
-    header img {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #ccc;
-    }
+  .profile-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    gap: 40px;
+  }
 
-    h1 {
-      margin-top: 25px;
-      font-size: 2.2em;
-      font-weight: 600;
-      letter-spacing: 1px;
-      color: #111;
-    }
+  .profile {
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+  }
 
-    .subtitle {
-      margin-top: 8px;
-      font-size: 1.1em;
-      color: #555;
-    }
+  .profile img {
+    width: 150px;
+    height: 150px;
+    border-radius: 5px;
+    border: 3px solid transparent;
+  }
 
-    section {
-      max-width: 800px;
-      margin: 60px auto;
-      padding: 0 25px;
-      line-height: 1.8;
-    }
+  .profile:hover img {
+    border-color: #fff;
+    transform: scale(1.05);
+  }
 
-    h2 {
-      font-weight: 600;
-      font-size: 1.6em;
-      border-left: 4px solid #000;
-      padding-left: 10px;
-      margin-bottom: 20px;
-      color: #000;
-    }
-
-    .interest-list li {
-      margin-bottom: 10px;
-      font-size: 1.1em;
-    }
-
-    .tag {
-      display: inline-block;
-      padding: 5px 10px;
-      margin: 5px;
-      border-radius: 5px;
-      background-color: #e5e5e5;
-      font-size: 0.9em;
-    }
-
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%; /* 16:9 */
-      height: 0;
-      overflow: hidden;
-      margin-top: 30px;
-    }
-
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    footer {
-      text-align: center;
-      padding: 40px;
-      color: #777;
-      font-size: 0.9em;
-      border-top: 1px solid #ddd;
-      margin-top: 60px;
-    }
-  </style>
+  .profile p {
+    margin-top: 15px;
+    font-size: 1.1em;
+  }
+</style>
 </head>
+
+<body>
+<h1>Who's Watching?</h1>
+
+<div class="profile-container">
+
+  <a href="profile.html" class="profile">
+    <img src="https://i.imgur.com/5XfK4dG.png">
+    <p>YJ</p>
+  </a>
+
+  <a href="playlist.html" class="profile">
+    <img src="https://i.imgur.com/u7ArQJG.png">
+    <p>歌單</p>
+  </a>
+
+  <a href="idol.html" class="profile">
+    <img src="https://i.imgur.com/XohC99S.png">
+    <p>BTS</p>
+  </a>
+
+</div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YJ 個人頁</title>
+<style>
+  body {
+    font-family: "Noto Sans TC", sans-serif;
+    background: #111;
+    color: #fff;
+    margin: 0;
+    padding: 20px;
+  }
+  h1 { font-size: 2.2em; }
+  ul { line-height: 2; font-size: 1.2em; }
+  a { color: #fff; }
+</style>
+</head>
+
+<body>
+<h1>YJ</h1>
+<p>喜歡：</p>
+
+<ul>
+  <li>📖 看小說</li>
+  <li>📺 追劇</li>
+  <li>🎧 聽音樂</li>
+</ul>
+
+<p><a href="index.html">⬅ 返回首頁</a></p>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K-POP 熱門歌單</title>
+<style>
+  body {
+    background: #111;
+    color: #fff;
+    font-family: "Noto Sans TC", sans-serif;
+    padding: 20px;
+  }
+  h1 { font-size: 2em; }
+  ul { font-size: 1.2em; line-height: 2; }
+  a { color: #7fc8ff; }
+</style>
+</head>
+
 <body>
 
-  <header>
-    <!-- 這邊放 BTS 或防彈照片，你可以換成你喜歡的圖 -->
-    <img src="https://i.imgur.com/5XfK4dG.png" alt="BTS / 防彈照片" />
-    <h1>YJ</h1>
-    <p class="subtitle">Minimalist · ARMY · 本命 J-hope</p>
-  </header>
+<h1>K-POP 熱門歌曲歌單</h1>
 
-  <section>
-    <h2>關於我</h2>
-    <p>
-      嗨，我是 <strong>YJ</strong>！  
-      喜歡簡約風格、黑白灰的乾淨設計。  
-      同時也是 ARMY，本命是 J-hope，他的笑容和 energy 給我很大的力量。
-    </p>
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=gdZLi9oWNZg" target="_blank">BTS — Dynamite</a></li>
+  <li><a href="https://www.youtube.com/watch?v=MBdVXkSdhwU" target="_blank">BTS — Boy With Luv</a></li>
+  <li><a href="https://www.youtube.com/watch?v=UOxkGD8qRB4" target="_blank">BLACKPINK — Kill This Love</a></li>
+  <li><a href="https://www.youtube.com/watch?v=ioNng23DkIM" target="_blank">BLACKPINK — How You Like That</a></li>
+  <li><a href="https://www.youtube.com/watch?v=7C2z4GqqS5E" target="_blank">BTS — Fake Love</a></li>
+  <li><a href="https://www.youtube.com/watch?v=GZjt_sA2eso" target="_blank">NewJeans — Super Shy</a></li>
+  <li><a href="https://www.youtube.com/watch?v=NfxG9IGJvYk" target="_blank">Stray Kids — Maniac</a></li>
+  <li><a href="https://www.youtube.com/watch?v=vRXZj0DzXIA" target="_blank">TXT — Sugar Rush Ride</a></li>
+</ul>
 
-    <h2>興趣</h2>
-    <ul class="interest-list">
-      <li>🎧 聽音樂（BTS、J-hope Solo、其他嘻哈 / 流行）</li>
-      <li>📺 追劇（韓劇 / 美劇 / Netflix）</li>
-      <li>📖 看小說（幻想、懸疑、愛情）</li>
-      <li>🌙 喜歡平靜、有質感的生活氛圍</li>
-    </ul>
+<p><a href="index.html">⬅ 返回首頁</a></p>
 
-    <h2>我的最愛影片</h2>
-    <div class="video-container">
-      <!-- 嵌入 BTS Dynamite 官方 MV -->
-      <iframe src="https://www.youtube.com/embed/gdZLi9oWNZg" 
-        title="BTS Dynamite Official MV" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-      </iframe>
-    </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BTS — 偶像專區</title>
+<style>
+  body {
+    background: #111;
+    color: #fff;
+    font-family: "Noto Sans TC", sans-serif;
+    padding: 20px;
+    line-height: 1.8;
+  }
+  h1 { font-size: 2.3em; }
+  h2 { font-size: 1.7em; margin-top: 30px; }
+  .members {
+    margin-top: 20px;
+  }
+  .member {
+    margin-bottom: 18px;
+  }
+  a { color: #7fc8ff; }
+</style>
+</head>
 
-    <h2>標籤</h2>
-    <div>
-      <span class="tag">Minimalist</span>
-      <span class="tag">ARMY</span>
-      <span class="tag">J-hope</span>
-      <span class="tag">Music Lover</span>
-      <span class="tag">Drama Addict</span>
-      <span class="tag">Reader</span>
-    </div>
+<body>
 
-  </section>
+<h1>BTS 防彈少年團</h1>
+<p>韓國最具代表性的男子團體之一，以音樂、舞台與故事感動全球。</p>
 
-  <footer>
-    © 2025 YJ — All Rights Reserved  
-  </footer>
+<h2>成員介紹</h2>
+
+<div class="members">
+  <div class="member"><strong>RM</strong> — 隊長，rap、作詞、製作</div>
+  <div class="member"><strong>Jin</strong> — Vocal、長得超帥</div>
+  <div class="member"><strong>Suga</strong> — Rapper、製作人、Agust D</div>
+  <div class="member"><strong>J-hope</strong> — ☀ 你的本命！主舞＆Rapper，能量滿滿的希望</div>
+  <div class="member"><strong>Jimin</strong> — Vocal、舞蹈實力強</div>
+  <div class="member"><strong>V</strong> — Vocal、藝術氣質</div>
+  <div class="member"><strong>Jungkook</strong> — 主唱、黃金忙內</div>
+</div>
+
+<h2>推薦歌曲</h2>
+
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=kTlv5_Bs8aw" target="_blank">BTS — Mic Drop</a></li>
+  <li><a href="https://www.youtube.com/watch?v=hlZnYV9m1cU" target="_blank">Killin’ It Girl（粉絲常推帶感歌）</a></li>
+  <li><a href="https://www.youtube.com/watch?v=9mQk7Evt6Vs" target="_blank">Magic Shop</a></li>
+</ul>
+
+<p><a href="index.html">⬅ 返回首頁</a></p>
 
 </body>
 </html>
