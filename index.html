@@ -1,1 +1,153 @@
-Hello World
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YJ 的個人網站</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    header {
+      text-align: center;
+      padding: 80px 20px;
+      background-color: #ffffff;
+      border-bottom: 1px solid #ddd;
+    }
+
+    header img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #ccc;
+    }
+
+    h1 {
+      margin-top: 25px;
+      font-size: 2.2em;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: #111;
+    }
+
+    .subtitle {
+      margin-top: 8px;
+      font-size: 1.1em;
+      color: #555;
+    }
+
+    section {
+      max-width: 800px;
+      margin: 60px auto;
+      padding: 0 25px;
+      line-height: 1.8;
+    }
+
+    h2 {
+      font-weight: 600;
+      font-size: 1.6em;
+      border-left: 4px solid #000;
+      padding-left: 10px;
+      margin-bottom: 20px;
+      color: #000;
+    }
+
+    .interest-list li {
+      margin-bottom: 10px;
+      font-size: 1.1em;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 5px 10px;
+      margin: 5px;
+      border-radius: 5px;
+      background-color: #e5e5e5;
+      font-size: 0.9em;
+    }
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 */
+      height: 0;
+      overflow: hidden;
+      margin-top: 30px;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      color: #777;
+      font-size: 0.9em;
+      border-top: 1px solid #ddd;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <!-- 這邊放 BTS 或防彈照片，你可以換成你喜歡的圖 -->
+    <img src="https://i.imgur.com/5XfK4dG.png" alt="BTS / 防彈照片" />
+    <h1>YJ</h1>
+    <p class="subtitle">Minimalist · ARMY · 本命 J-hope</p>
+  </header>
+
+  <section>
+    <h2>關於我</h2>
+    <p>
+      嗨，我是 <strong>YJ</strong>！  
+      喜歡簡約風格、黑白灰的乾淨設計。  
+      同時也是 ARMY，本命是 J-hope，他的笑容和 energy 給我很大的力量。
+    </p>
+
+    <h2>興趣</h2>
+    <ul class="interest-list">
+      <li>🎧 聽音樂（BTS、J-hope Solo、其他嘻哈 / 流行）</li>
+      <li>📺 追劇（韓劇 / 美劇 / Netflix）</li>
+      <li>📖 看小說（幻想、懸疑、愛情）</li>
+      <li>🌙 喜歡平靜、有質感的生活氛圍</li>
+    </ul>
+
+    <h2>我的最愛影片</h2>
+    <div class="video-container">
+      <!-- 嵌入 BTS Dynamite 官方 MV -->
+      <iframe src="https://www.youtube.com/embed/gdZLi9oWNZg" 
+        title="BTS Dynamite Official MV" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <h2>標籤</h2>
+    <div>
+      <span class="tag">Minimalist</span>
+      <span class="tag">ARMY</span>
+      <span class="tag">J-hope</span>
+      <span class="tag">Music Lover</span>
+      <span class="tag">Drama Addict</span>
+      <span class="tag">Reader</span>
+    </div>
+
+  </section>
+
+  <footer>
+    © 2025 YJ — All Rights Reserved  
+  </footer>
+
+</body>
+</html>
