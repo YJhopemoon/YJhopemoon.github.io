@@ -6,17 +6,15 @@
 
 <style>
 body {
-  background: #f5e9d3;
+  background: #f5e9d3;   /* ← 米色背景 */
   font-family: "Arial", sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  padding: 0;
-  margin: 0;
 }
 
-/* 📺 電視外框 */
+/* 📺 電視機外框 */
 .tv-frame {
   width: 850px;
   height: 600px;
@@ -24,10 +22,10 @@ body {
   border-radius: 25px;
   padding: 25px;
   position: relative;
-  box-shadow: 0 0 35px rgba(0,0,0,0.45);
+  box-shadow: 0 0 35px rgba(0,0,0,0.45); /* 在米色背景更清楚 */
 }
 
-/* 📺 螢幕 */
+/* 📺 電視螢幕 */
 .screen {
   width: 100%;
   height: 100%;
@@ -37,6 +35,7 @@ body {
   position: relative;
 }
 
+/* CRT 靜電 */
 #staticEffect {
   position: absolute;
   width: 100%;
@@ -48,7 +47,7 @@ body {
   pointer-events: none;
 }
 
-/* 頻道頁 */
+/* 頻道頁面 */
 .page {
   display: none;
   color: white;
@@ -61,7 +60,7 @@ body {
   display: block;
 }
 
-/* 🎛 右側 APP 按鈕 (PC) */
+/* 🎛 右側 APP 按鈕（更新：在米色背景更明顯） */
 .tv-buttons {
   position: absolute;
   right: -120px;
@@ -76,162 +75,124 @@ body {
   width: 90px;
   height: 90px;
   border-radius: 20px;
-  background-size: contain;
+  background-size: 80%;
   background-repeat: no-repeat;
   background-position: center;
   background-color: #000;
-  border: 3px solid #888;
   cursor: pointer;
-  transition: 0.1s;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  box-shadow: 0 0 10px rgba(0,0,0,0.6);
+  transition: 0.15s;
+  border: 3px solid #888;  /* 米色背景上更清楚 */
 }
 
 .app-btn:active {
-  transform: scale(0.9);
+  transform: scale(0.90);
 }
 
 .knob-label {
-  color: #333;
+  color: #333;  /* 深灰，在米色背景可讀性更高 */
   text-align: center;
-  font-size: 15px;
   margin-top: 5px;
+  font-size: 16px;
 }
 
-/* 📱 手機模式：下滑選單 */
-.mobile-menu {
-  display: none;
-  width: 100%;
-  padding: 15px 0;
-  background: #ffffffcc;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  position: absolute;
-  bottom: -150px;
-  border-radius: 0 0 20px 20px;
+/* 換台動畫 */
+.fadeout {
+  opacity: 0;
+  transition: 0.3s;
 }
-
-.mobile-menu button {
-  width: 100%;
-  padding: 18px;
-  font-size: 20px;
-  border: none;
-  background: #333;
-  color: white;
-  border-bottom: 1px solid #555;
-}
-
-.mobile-menu button:active {
-  background: #555;
-}
-
-/* 📱 當寬度 < 950px（手機） */
-@media (max-width: 950px) {
-
-  body {
-    flex-direction: column;
-    height: auto;
-    padding-top: 40px;
-  }
-
-  .tv-frame {
-    width: 95vw;
-    height: 70vh;
-  }
-
-  .tv-buttons {
-    display: none; /* PC按鈕隱藏 */
-  }
-
-  .mobile-menu {
-    display: block;
-  }
+.fadein {
+  opacity: 1;
+  transition: 0.3s;
 }
 </style>
 </head>
 <body>
-
-<!-- 📱 手機版下滑選單 -->
-<div class="mobile-menu">
-  <button onclick="switchChannel('home')">🏠 主頁</button>
-  <button onclick="switchChannel('youtube')">▶ YouTube</button>
-  <button onclick="switchChannel('netflix')">🎬 Netflix</button>
-  <button onclick="switchChannel('disney')">🐭 Disney+</button>
-  <button onclick="switchChannel('iqiyi')">🟢 愛奇藝</button>
-</div>
 
 <div class="tv-frame">
   <div class="screen">
 
     <div id="staticEffect"></div>
 
+    <!-- 主頁 -->
     <div id="home" class="page active">
       📺 很久沒有打開電視機了吧？<br><br>
-      👉 請用右邊或下方選擇你想看的頻道
+      👉 請用右邊選擇你想看的頻道
     </div>
 
+    <!-- YouTube -->
     <div id="youtube" class="page">
       <h2>YouTube 熱門影片</h2>
       <a href="https://www.youtube.com/" target="_blank" style="color:#4ac4ff;">
-        ▶ 前往 YouTube
+        ▶ 打開 YouTube
       </a>
     </div>
 
+    <!-- Netflix -->
     <div id="netflix" class="page">
       <h2>Netflix 熱門影集</h2>
       <a href="https://www.netflix.com" target="_blank" style="color:#e50914;">
-        ▶ 前往 Netflix
+        ▶ 打開 Netflix
       </a>
     </div>
 
+    <!-- Disney+ -->
     <div id="disney" class="page">
       <h2>Disney+ 熱門動畫</h2>
       <a href="https://www.disneyplus.com" target="_blank" style="color:#7bb5ff;">
-        ▶ 前往 Disney+
+        ▶ 打開 Disney+
       </a>
     </div>
 
+    <!-- 愛奇藝 -->
     <div id="iqiyi" class="page">
       <h2>愛奇藝 熱門節目</h2>
       <a href="https://www.iq.com" target="_blank" style="color:#91ff4a;">
-        ▶ 前往 愛奇藝
+        ▶ 打開 愛奇藝
       </a>
     </div>
 
   </div>
 
-  <!-- 🎛 PC 右側 APP 按鈕 -->
+  <!-- 右側 APP 旋鈕按鈕 -->
   <div class="tv-buttons">
 
     <div>
-      <div class="app-btn" onclick="switchChannel('home')"
-        style="background-image:url('https://i.imgur.com/L0iWg7N.png');">
+      <div class="app-btn"
+        onclick="switchChannel('home')"
+        style="background-image:url('https://cdn-icons-png.flaticon.com/512/60/60525.png');">
       </div>
       <div class="knob-label">主頁</div>
     </div>
 
     <div>
-      <div class="app-btn" onclick="switchChannel('youtube')"
-        style="background-image:url('https://i.imgur.com/9ACe6E0.png');">
+      <div class="app-btn"
+        onclick="switchChannel('youtube')"
+        style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2023.svg'); background-size:90%;">
       </div>
       <div class="knob-label">YouTube</div>
     </div>
 
     <div>
-      <div class="app-btn" onclick="switchChannel('netflix')"
-        style="background-image:url('https://i.imgur.com/7cEVSnp.png');">
+      <div class="app-btn"
+        onclick="switchChannel('netflix')"
+        style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg'); background-size:90%;">
       </div>
       <div class="knob-label">Netflix</div>
     </div>
 
     <div>
-      <div class="app-btn" onclick="switchChannel('disney')"
-        style="background-image:url('https://i.imgur.com/IqgQxYh.png');">
+      <div class="app-btn"
+        onclick="switchChannel('disney')"
+        style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg'); background-size:85%;">
       </div>
       <div class="knob-label">Disney+</div>
     </div>
 
     <div>
-      <div class="app-btn" onclick="switchChannel('iqiyi')"
-        style="background-image:url('https://i.imgur.com/EJzG9gy.png');">
+      <div class="app-btn"
+        onclick="switchChannel('iqiyi')"
+        style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/6/6c/IQIYI_logo.svg'); background-size:85%;">
       </div>
       <div class="knob-label">愛奇藝</div>
     </div>
@@ -241,6 +202,7 @@ body {
 </div>
 
 <script>
+/* 📺 頻道切換 + 雪花特效 */
 function switchChannel(pageID) {
   const pages = document.querySelectorAll(".page");
   const staticFX = document.getElementById("staticEffect");
