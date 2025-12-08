@@ -6,7 +6,7 @@
 
 <style>
 body {
-  background: #111;
+  background: #f5e9d3;   /* ← 米色背景 */
   font-family: "Arial", sans-serif;
   display: flex;
   justify-content: center;
@@ -22,7 +22,7 @@ body {
   border-radius: 25px;
   padding: 25px;
   position: relative;
-  box-shadow: 0 0 30px rgba(0,0,0,0.8);
+  box-shadow: 0 0 35px rgba(0,0,0,0.45); /* 在米色背景更清楚 */
 }
 
 /* 📺 電視螢幕 */
@@ -35,7 +35,7 @@ body {
   position: relative;
 }
 
-/* 📺 CRT 雜訊背景 */
+/* CRT 靜電 */
 #staticEffect {
   position: absolute;
   width: 100%;
@@ -47,7 +47,7 @@ body {
   pointer-events: none;
 }
 
-/* 📺 螢幕內頁 */
+/* 頻道頁面 */
 .page {
   display: none;
   color: white;
@@ -56,12 +56,11 @@ body {
   font-size: 28px;
 }
 
-/* 啟用頁 */
 .page.active {
   display: block;
 }
 
-/* 📺 🎛 右邊 APP 旋鈕區 */
+/* 🎛 右側 APP 按鈕（更新：在米色背景更明顯） */
 .tv-buttons {
   position: absolute;
   right: -120px;
@@ -81,9 +80,9 @@ body {
   background-position: center;
   background-color: #000;
   cursor: pointer;
-  box-shadow: 0 0 12px rgba(0,0,0,0.7);
+  box-shadow: 0 0 10px rgba(0,0,0,0.6);
   transition: 0.15s;
-  border: 3px solid #555;
+  border: 3px solid #888;  /* 米色背景上更清楚 */
 }
 
 .app-btn:active {
@@ -91,23 +90,21 @@ body {
 }
 
 .knob-label {
-  color: #fff;
+  color: #333;  /* 深灰，在米色背景可讀性更高 */
   text-align: center;
   margin-top: 5px;
   font-size: 16px;
 }
 
-/* 電視換台動畫 */
+/* 換台動畫 */
 .fadeout {
   opacity: 0;
   transition: 0.3s;
 }
-
 .fadein {
   opacity: 1;
   transition: 0.3s;
 }
-
 </style>
 </head>
 <body>
@@ -115,16 +112,15 @@ body {
 <div class="tv-frame">
   <div class="screen">
 
-    <!-- CRT 靜電 -->
     <div id="staticEffect"></div>
 
-    <!-- 📺 主頁 -->
+    <!-- 主頁 -->
     <div id="home" class="page active">
       📺 很久沒有打開電視機了吧？<br><br>
       👉 請用右邊選擇你想看的頻道
     </div>
 
-    <!-- 📺 YouTube -->
+    <!-- YouTube -->
     <div id="youtube" class="page">
       <h2>YouTube 熱門影片</h2>
       <a href="https://www.youtube.com/" target="_blank" style="color:#4ac4ff;">
@@ -132,7 +128,7 @@ body {
       </a>
     </div>
 
-    <!-- 📺 Netflix -->
+    <!-- Netflix -->
     <div id="netflix" class="page">
       <h2>Netflix 熱門影集</h2>
       <a href="https://www.netflix.com" target="_blank" style="color:#e50914;">
@@ -140,7 +136,7 @@ body {
       </a>
     </div>
 
-    <!-- 📺 Disney+ -->
+    <!-- Disney+ -->
     <div id="disney" class="page">
       <h2>Disney+ 熱門動畫</h2>
       <a href="https://www.disneyplus.com" target="_blank" style="color:#7bb5ff;">
@@ -148,7 +144,7 @@ body {
       </a>
     </div>
 
-    <!-- 📺 愛奇藝 -->
+    <!-- 愛奇藝 -->
     <div id="iqiyi" class="page">
       <h2>愛奇藝 熱門節目</h2>
       <a href="https://www.iq.com" target="_blank" style="color:#91ff4a;">
@@ -158,7 +154,7 @@ body {
 
   </div>
 
-  <!-- 📺 右側 APP 旋鈕按鈕 -->
+  <!-- 右側 APP 旋鈕按鈕 -->
   <div class="tv-buttons">
 
     <div>
