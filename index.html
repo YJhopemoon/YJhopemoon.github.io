@@ -1,114 +1,67 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<title>Retro TV Streaming</title>
-<style>
+<title>復古電視機 - 多平台頻道</title>
 
+<style>
 body {
-  margin: 0;
-  background: #000;
-  font-family: 'Noto Sans TC', sans-serif;
+  background: #111;
+  font-family: "Arial", sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
 
-/* --- 電視外框 --- */
+/* 📺 電視機外框 */
 .tv-frame {
-  width: 900px;
-  height: 650px;
-  background: #3d2f23;
-  border-radius: 30px;
+  width: 850px;
+  height: 600px;
+  background: #2a2a2a;
+  border-radius: 25px;
   padding: 25px;
-  box-shadow: 0 0 40px rgba(0,0,0,0.8);
   position: relative;
+  box-shadow: 0 0 30px rgba(0,0,0,0.8);
 }
 
-/* --- CRT 壞掉的螢幕效果（彎曲 + 雜訊 + 雪花） --- */
+/* 📺 電視螢幕 */
 .screen {
-  background: #000;
-  border-radius: 20px;
   width: 100%;
   height: 100%;
+  background: black;
   overflow: hidden;
+  border-radius: 15px;
   position: relative;
-  border: 10px solid #222;
-
-  /* 螢幕彎曲 */
-  transform: perspective(900px) rotateX(2deg);
-
-  /* 垂直掃描線 */
-  background-image: repeating-linear-gradient(
-    rgba(255,255,255,0.02) 0px,
-    rgba(255,255,255,0.02) 2px,
-    transparent 3px
-  );
 }
 
-/* --- 雪花雜訊動畫 --- */
-@keyframes staticNoise {
-  0% {opacity: 0.2;}
-  50% {opacity: 0.4;}
-  100% {opacity: 0.2;}
-}
-
-.static {
-  pointer-events: none;
+/* 📺 CRT 雜訊背景 */
+#staticEffect {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: url("https://upload.wikimedia.org/wikipedia/commons/3/3f/White-noise.gif");
+  background: url('https://i.imgur.com/6Qon3rL.gif');
   background-size: cover;
-  opacity: 0.25;
-  mix-blend-mode: screen;
-  animation: staticNoise 0.6s infinite linear;
+  opacity: 0;
+  transition: 0.3s;
+  pointer-events: none;
 }
 
-/* --- 頁面內容 --- */
+/* 📺 螢幕內頁 */
 .page {
   display: none;
-  width: 100%;
-  height: 100%;
-  color: #fff;
-  padding: 35px;
+  color: white;
+  padding: 30px;
+  text-align: center;
+  font-size: 28px;
 }
 
-.active {
+/* 啟用頁 */
+.page.active {
   display: block;
 }
 
-h1 {
-  font-size: 48px;
-  margin-bottom: 20px;
-}
-
-p {
-  font-size: 22px;
-  line-height: 1.6;
-}
-
-/* --- 連結面板 --- */
-.link-block {
-  margin-top: 20px;
-  padding: 20px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 12px;
-  font-size: 22px;
-}
-
-a {
-  color: #6fe8ff;
-  text-decoration: none;
-  font-size: 24px;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* --- 電視旋鈕按鈕 --- */
+/* 📺 🎛 右邊 APP 旋鈕區 */
 .tv-buttons {
   position: absolute;
   right: -120px;
@@ -116,29 +69,43 @@ a:hover {
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  gap: 30px;
-  text-align: center;
+  gap: 25px;
 }
 
-.knob {
-  width: 80px;
-  height: 80px;
-  background: radial-gradient(#666, #222);
-  border-radius: 50%;
+.app-btn {
+  width: 90px;
+  height: 90px;
+  border-radius: 20px;
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #000;
   cursor: pointer;
-  border: 4px solid #000;
-  box-shadow: 0 0 10px #000;
-  transition: 0.1s;
+  box-shadow: 0 0 12px rgba(0,0,0,0.7);
+  transition: 0.15s;
+  border: 3px solid #555;
 }
 
-.knob:active {
-  transform: scale(0.95) rotate(20deg);
+.app-btn:active {
+  transform: scale(0.90);
 }
 
 .knob-label {
   color: #fff;
-  margin-top: 8px;
+  text-align: center;
+  margin-top: 5px;
   font-size: 16px;
+}
+
+/* 電視換台動畫 */
+.fadeout {
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.fadein {
+  opacity: 1;
+  transition: 0.3s;
 }
 
 </style>
@@ -146,90 +113,111 @@ a:hover {
 <body>
 
 <div class="tv-frame">
-
   <div class="screen">
-    <div class="static"></div>
 
-    <!-- 主頁 -->
+    <!-- CRT 靜電 -->
+    <div id="staticEffect"></div>
+
+    <!-- 📺 主頁 -->
     <div id="home" class="page active">
-      <h1>📺 Welcome Back</h1>
-      <p>
-        很久沒打開電視機了吧？<br><br>
-        現在的大家都用手機追劇、看影片…<br><br>
-        但這台老電視還在等你。<br><br>
-        👉 請往右邊點選自己想看的頻道。
-      </p>
+      📺 很久沒有打開電視機了吧？<br><br>
+      👉 請用右邊選擇你想看的頻道
     </div>
 
-    <!-- YouTube -->
+    <!-- 📺 YouTube -->
     <div id="youtube" class="page">
-      <h1>YouTube</h1>
-      <div class="link-block">
-        <a href="https://www.youtube.com/feed/trending" target="_blank">🔥 YouTube 熱門影片 Trending</a><br><br>
-        <a href="https://www.youtube.com/music" target="_blank">🎵 YouTube Music</a><br><br>
-        <a href="https://www.youtube.com/@Disney" target="_blank">🦊 Disney 官方頻道</a>
-      </div>
+      <h2>YouTube 熱門影片</h2>
+      <a href="https://www.youtube.com/" target="_blank" style="color:#4ac4ff;">
+        ▶ 打開 YouTube
+      </a>
     </div>
 
-    <!-- Netflix -->
+    <!-- 📺 Netflix -->
     <div id="netflix" class="page">
-      <h1>Netflix</h1>
-      <div class="link-block">
-        <a href="https://www.netflix.com" target="_blank">▶ Netflix 官方網站</a><br><br>
-        <p>(需要登入後播放內容)</p>
-      </div>
+      <h2>Netflix 熱門影集</h2>
+      <a href="https://www.netflix.com" target="_blank" style="color:#e50914;">
+        ▶ 打開 Netflix
+      </a>
     </div>
 
-    <!-- Disney+ -->
+    <!-- 📺 Disney+ -->
     <div id="disney" class="page">
-      <h1>Disney+</h1>
-      <div class="link-block">
-        <a href="https://www.disneyplus.com" target="_blank">▶ Disney+ 官方網站</a><br><br>
-        <a href="https://www.youtube.com/@Disney" target="_blank">🎬 Disney YouTube 官方頻道</a>
-      </div>
+      <h2>Disney+ 熱門動畫</h2>
+      <a href="https://www.disneyplus.com" target="_blank" style="color:#7bb5ff;">
+        ▶ 打開 Disney+
+      </a>
     </div>
 
-    <!-- iQIYI -->
+    <!-- 📺 愛奇藝 -->
     <div id="iqiyi" class="page">
-      <h1>愛奇藝 iQIYI</h1>
-      <div class="link-block">
-        <a href="https://www.iq.com" target="_blank">▶ 愛奇藝 官方入口</a><br><br>
-        <a href="https://www.youtube.com/@iQIYI" target="_blank">🎥 愛奇藝 YouTube 官方頻道</a>
-      </div>
+      <h2>愛奇藝 熱門節目</h2>
+      <a href="https://www.iq.com" target="_blank" style="color:#91ff4a;">
+        ▶ 打開 愛奇藝
+      </a>
     </div>
 
   </div>
 
-  <!-- 右側旋鈕 -->
+  <!-- 📺 右側 APP 旋鈕按鈕 -->
   <div class="tv-buttons">
+
     <div>
-      <div class="knob" onclick="showPage('home')"></div>
+      <div class="app-btn"
+        onclick="switchChannel('home')"
+        style="background-image:url('https://cdn-icons-png.flaticon.com/512/60/60525.png');">
+      </div>
       <div class="knob-label">主頁</div>
     </div>
+
     <div>
-      <div class="knob" onclick="showPage('youtube')"></div>
+      <div class="app-btn"
+        onclick="switchChannel('youtube')"
+        style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2023.svg'); background-size:90%;">
+      </div>
       <div class="knob-label">YouTube</div>
     </div>
+
     <div>
-      <div class="knob" onclick="showPage('netflix')"></div>
+      <div class="app-btn"
+        onclick="switchChannel('netflix')"
+        style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg'); background-size:90%;">
+      </div>
       <div class="knob-label">Netflix</div>
     </div>
+
     <div>
-      <div class="knob" onclick="showPage('disney')"></div>
+      <div class="app-btn"
+        onclick="switchChannel('disney')"
+        style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg'); background-size:85%;">
+      </div>
       <div class="knob-label">Disney+</div>
     </div>
+
     <div>
-      <div class="knob" onclick="showPage('iqiyi')"></div>
+      <div class="app-btn"
+        onclick="switchChannel('iqiyi')"
+        style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/6/6c/IQIYI_logo.svg'); background-size:85%;">
+      </div>
       <div class="knob-label">愛奇藝</div>
     </div>
+
   </div>
 
 </div>
 
 <script>
-function showPage(page) {
-  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-  document.getElementById(page).classList.add("active");
+/* 📺 頻道切換 + 雪花特效 */
+function switchChannel(pageID) {
+  const pages = document.querySelectorAll(".page");
+  const staticFX = document.getElementById("staticEffect");
+
+  pages.forEach(p => p.classList.remove("active"));
+  staticFX.style.opacity = 1;
+
+  setTimeout(() => {
+    document.getElementById(pageID).classList.add("active");
+    staticFX.style.opacity = 0;
+  }, 600);
 }
 </script>
 
